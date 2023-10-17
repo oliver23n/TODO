@@ -1,0 +1,43 @@
+const typeDefs = `
+
+  type User {
+    _id: ID!
+    name: String!
+    email: String!
+    password: String!
+    todos: [Task]
+  }
+
+  type Auth {
+    token: ID!
+    user: User!
+  }
+
+  type Task {
+    _id: ID!
+    title: String!
+    description: String
+    status: String
+  }
+
+  type Query {
+    me: User
+
+
+  }
+
+  type Mutation {
+    #for user
+
+    addProfile(name: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+
+    #for tasks
+
+    addTask(title: String!, description: String, status: String): Task
+    updateTask(_id: ID!, status: String): Task
+    removeTask(_id: ID!): Task
+  }
+`;
+
+module.exports = typeDefs;
