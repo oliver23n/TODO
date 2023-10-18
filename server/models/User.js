@@ -19,10 +19,10 @@ const userSchema = new Schema({
         required: true,
         minlength: 5,
     },
-    todos: [ {
-        type: Schema.Types.ObjectId,
-        ref: "Task"
-    }],
+    // todos: [ {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Task"
+    // }],
 });
 
 // set up pre-save middleware to create password

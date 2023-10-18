@@ -2,10 +2,9 @@ const typeDefs = `
 
   type User {
     _id: ID!
-    name: String!
+    username: String!
     email: String!
     password: String!
-    todos: [Task]
   }
 
   type Auth {
@@ -18,18 +17,18 @@ const typeDefs = `
     title: String!
     description: String
     status: String
+    user: User!
   }
 
   type Query {
     me: User
-
-
+    tasks: [Task]
   }
 
   type Mutation {
     #for user
 
-    addProfile(name: String!, email: String!, password: String!): Auth
+    addProfile(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
     #for tasks

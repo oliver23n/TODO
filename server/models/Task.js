@@ -13,6 +13,11 @@ const taskSchema = new Schema({
         enum: ['todo', 'completed'],
         default: 'todo',
     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
 });
 
 const Task = model('Task', taskSchema);

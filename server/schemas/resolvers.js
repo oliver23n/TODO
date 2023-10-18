@@ -10,6 +10,13 @@ const resolvers = {
                 return User.findOne({_id:context.user._id}).populate('todos')
             }
             throw AuthenticationError;
+        },
+        tasks: async (parent, args, context) =>{
+            if (!context.user) {
+                throw AuthenticationError;
+            }
+            const todos = await Task.find({user: context.user._id});
+            return todos;
         }
     },
 
@@ -21,7 +28,6 @@ const resolvers = {
         },
 
         login: async (parent, { email, password }) => {
-            // console.log(email, password);
             const user = await User.findOne({ email });
 
             if (!user) {
@@ -41,20 +47,20 @@ const resolvers = {
             if (!context.user) {
                 throw AuthenticationError;
             }
-            const newTask = new Task({
+            const newTask = await Task.create({
                 title,
                 description,
-                status
+                status,
+                user: context.user._id
             });
-            newTask.user = context.user;
-            await newTask.save();
+
             return newTask;
         },
-        updateTask: async (parent, { id, status }, context) => {
+        updateTask: async (parent, { _id, status }, context) => {
             if (!context.user) {
                 throw AuthenticationError;
             }
-            const task = await Task.findById(id);
+            const task = await Task.findById(_id);
             if (!task) {
                 throw new Error('Task not found');
             }
@@ -62,12 +68,17 @@ const resolvers = {
             await task.save();
             return task;
         },
-        removeTask: async( parent, {id}, context) => {
+        removeTask: async( parent, {_id}, context) => {
             if (!context.user) {
                 throw AuthenticationError;
             }
-            const removeTask = await Task.findOneAndDelete( { _id: id});
-            return removeTask;
+            try{
+
+                const removeTask = await Task.findOneAndDelete( { _id});
+                return removeTask;
+            }catch(err){
+                console.log(err);
+            }
         }
 
     }
