@@ -6,6 +6,7 @@ import Error from './pages/Error.jsx';
 import Login from './pages/Login.jsx';
 import Todo from './pages/Todo.jsx';
 import Home from './pages/Home.jsx';
+import SignUp from './pages/SignUp.jsx';
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path:'/login',
         element: <Login />
+      },
+      {
+        path:'/signup',
+        element: <SignUp />
       }
     ]
   }

@@ -6,19 +6,24 @@ import Auth from '../../utils/auth';
 
 const Header = () => {
 
+    const logout = (event) => {
+        event.preventDefault();
+        Auth.logout();
+    };
+
     return (
         <Navbar className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href="#home">Todos</Navbar.Brand>
+                <Navbar.Brand href='/'>Todos</Navbar.Brand>
                 {Auth.loggedIn()? (
                     <>
                     <Navbar.Text>
-                        Signed in as: <a href="#login">Mark Otto</a>
+                        Signed in as: <a>Mark Otto</a>
                     </Navbar.Text>
-                    <Nav.Link>Logout</Nav.Link>
+                    <Nav.Link onClick={logout}>Logout</Nav.Link>
                     </>
                     ): (
-                        <Nav.Link>Login</Nav.Link>
+                        <Nav.Link href='/login'>Login</Nav.Link>
                         )}
             </Container>
         </Navbar>
