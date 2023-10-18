@@ -4,7 +4,8 @@ import { createBrowserRouter, RouterProvider} from "react-router-dom";
 import App from './App.jsx';
 import Error from './pages/Error.jsx';
 import Login from './pages/Login.jsx';
-import Todo from './pages/Todo.jsx'
+import Todo from './pages/Todo.jsx';
+import Home from './pages/Home.jsx';
 
 
 const router = createBrowserRouter([
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
     children:[
       {
         index: true,
+        element: <Home />
+      },
+      {
+        path:'/todos',
         element: <Todo />
       },
       {
