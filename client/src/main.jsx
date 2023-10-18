@@ -2,7 +2,9 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider} from "react-router-dom";
 
 import App from './App.jsx';
-import { Error, Login, Todo } from './pages'
+import Error from './pages/Error.jsx';
+import Login from './pages/Login.jsx';
+import Todo from './pages/Todo.jsx'
 
 
 const router = createBrowserRouter([
