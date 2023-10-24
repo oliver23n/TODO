@@ -34,8 +34,8 @@ export const ADD_TASK = gql`
 `;
 
 export const UPDATE_TASK = gql`
-  mutation updateTask($_id: ID!, $status: String){
-    updateTask(_id: $_id, status: $status){
+  mutation updateTask($Id: ID!, $status: String){
+    updateTask(_id: $Id, status: $status){
       title
       description
     }
