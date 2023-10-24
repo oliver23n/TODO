@@ -4,6 +4,8 @@
     import Stack from 'react-bootstrap/Stack';
     import Row from 'react-bootstrap/Row';
     import Col from 'react-bootstrap/Col';
+    import {MdDelete} from 'react-icons/Md';
+    import { MdOutlineDownloadDone } from 'react-icons/Md'
 
 
     import { useState } from 'react';
@@ -106,29 +108,34 @@ const handleComplete = async(Id) =>{
             <>
                 <Container>
 
-                    <Stack direction="horizontal" gap={3}>
-                        <h3>NewTask</h3>
-                        <Form.Control className="me-auto" placeholder="Enter new task"
+                        <h4 className='mt-3'>Add New Task:</h4>
+                        <div>
+
+                        <Form.Control className="p-2 m-2" placeholder="Enter new task"
                         name="title"
                         value={formState.title}
                         onChange={handleChange} />
-                        <Form.Control className="me-auto" placeholder="Description"
-                            name="description"
-                            value={formState.description}
-                            onChange={handleChange} />
-                        <Button variant="primary"
+                        <Form.Control className="p-2 m-2" placeholder="Description"
+                        as="textarea" rows={3} 
+                        name="description"
+                        value={formState.description}
+                        onChange={handleChange} />
+                        </div>
+                        <div class="d-flex justify-content-end">
+                        <Button variant="primary" className='px-5 py-2' 
                         onClick={handleSubmit}>Save</Button>
-                    </Stack>
-                    <Container>
+                        </div>
+                    
+                    <Container className='mt-2 border-top pt-2'>
                         <Row>
-                            <Col>To Do:</Col>
-                            <Col>Completed:</Col>
+                            <Col><h3>To Do:</h3></Col>
+                            <Col><h3>Completed:</h3></Col>
                         </Row>
                         {loading ? (<div>loading...</div>)
                             :
                             <Row>
                                 <Col>
-                                    <Stack gap={3}>
+                                    <Stack gap={1}>
                                         {
                                             toBeDone.map((element) =>
 
@@ -141,11 +148,11 @@ const handleComplete = async(Id) =>{
                                                         {element.description}
                                                     </p>
                                                     <Button
-                                                    onClick={()=>{handleComplete(element._id)}}>Check Done!</Button>
+                                                    onClick={()=>{handleComplete(element._id)}}><MdOutlineDownloadDone/></Button>
                                                     <Button
                                                     onClick={()=>{
                                                         handleDelete(element._id);
-                                                    }}>delete</Button>
+                                                    }}><MdDelete/></Button>
                                                 </div>
                                             )
                                             )
@@ -153,7 +160,7 @@ const handleComplete = async(Id) =>{
                                     </Stack>
                                 </Col>
                                 <Col>
-                                    <Stack gap={3}>
+                                    <Stack gap={1}>
                                         {
                                             finished.map((element) =>
 
@@ -168,7 +175,7 @@ const handleComplete = async(Id) =>{
                                                     <Button
                                                         onClick={() => {
                                                             handleDelete(element._id);
-                                                        }}>delete</Button>
+                                                        }}><MdDelete /></Button>
                                                 </div>
                                             )
                                             )
