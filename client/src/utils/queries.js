@@ -9,3 +9,13 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_TASKS = gql`
+  query tasks{
+    tasks{
+      title
+      description
+      status
+    }
+  }
+`;
