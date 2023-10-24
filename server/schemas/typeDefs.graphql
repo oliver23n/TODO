@@ -33,7 +33,7 @@ const typeDefs = `
 
     #for tasks
 
-    addTask(title: String!, description: String, status: String): Task
+    addTask(title: String!, description: String): Task
     updateTask(_id: ID!, status: String): Task
     removeTask(_id: ID!): Task
   }

@@ -5,31 +5,65 @@ import Stack from 'react-bootstrap/Stack';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 
-import { useQuery } from '@apollo/client';
+import { useState } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_TASKS } from '../utils/queries';
+import { ADD_TASK, UPDATE_TASK, DELETE_TASK } from '../utils/mutations';
 
 export default function Todo() {
 
-const {loading, data, error }= useQuery(QUERY_TASKS);
-// console.log(data.tasks);
-const finished = [];
-const toBeDone = [];
-if( !loading ){
+    const [Id,setId]=useState('')
 
-    data.tasks.forEach( (el) =>{
-        console.log(el);
-        el.status === 'completed' ? finished.push(el) : toBeDone.push(el);
-    } )
-}
-//sort completed, and todo 
-//use mutation to add a task, or remove
-//rerun query
+    const { loading, data, error } = useQuery(QUERY_TASKS);
+    const finished = [];
+    const toBeDone = [];
+    if (!loading) {
+
+        data.tasks.forEach((el) => {
+            console.log(el);
+            el.status === 'completed' ? finished.push(el) : toBeDone.push(el);
+        })
+    }
+    const [addTask, { err1 }] = useMutation(ADD_TASK, {
+        refetchQueries: [
+            QUERY_TASKS,
+            'tasks'
+        ]
+    });
+    const [updateTask, { err2 }] = useMutation(UPDATE_TASK, {
+        refetchQueries: [
+            QUERY_TASKS,
+            'tasks'
+        ]
+    });
+    const [removeTask, { err3 }] = useMutation(DELETE_TASK, {
+        refetchQueries: [
+            QUERY_TASKS,
+            'tasks'
+        ]
+    });
+
+    //use mutation to add a task, or remove
+//delete Task
+const handleDelete = async ()=>{
+    try{
+        const {deleteTask} = await removeTask(
+            {
+                variables:{Id}
+            }
+        )
+    }catch(err){
+        console.error(err);
+    }
+} 
+
+    //rerun query
     return (
-       <>
-       <Container>
+        <>
+            <Container>
 
                 <Stack direction="horizontal" gap={3}>
-                    <h3>NewTask</h3>  
+                    <h3>NewTask</h3>
                     <Form.Control className="me-auto" placeholder="Enter new task" />
                     <Button variant="primary">Save</Button>
                 </Stack>
@@ -39,21 +73,27 @@ if( !loading ){
                         <Col>Completed:</Col>
                     </Row>
                     {loading ? (<div>loading...</div>)
-                    : 
+                        :
                         <Row>
                             <Col>
                                 <Stack gap={3}>
                                     {
-                                        toBeDone.map((element, index) =>
+                                        toBeDone.map((element) =>
 
                                         (
 
-                                            <div key={index}>
+                                            <div key={element._id}>
                                                 <h5 className='p-1'>{element.title}
                                                 </h5>
                                                 <p className='p-2'>
                                                     {element.description}
                                                 </p>
+                                                <Button>Check Done!</Button>
+                                                <Button
+                                                onClick={()=>{
+                                                    setId(element._id);
+                                                    handleDelete();
+                                                }}>delete</Button>
                                             </div>
                                         )
                                         )
@@ -63,26 +103,31 @@ if( !loading ){
                             <Col>
                                 <Stack gap={3}>
                                     {
-                                        finished.map((element,index) => 
-                                           
-                                            (
-                                                
-                                                <div key={index}>
-                                                    <h5 className='p-1'>{element.title}
-                                                    </h5>
-                                                    <p className='p-2'>
+                                        finished.map((element) =>
+
+                                        (
+
+                                            <div key={element._id}>
+                                                <h5 className='p-1'>{element.title}
+                                                </h5>
+                                                <p className='p-2'>
                                                     {element.description}
-                                                    </p>
-                                                </div>
-                                            )
+                                                </p>
+                                                <Button
+                                                    onClick={() => {
+                                                        setId(element._id);
+                                                        handleDelete();
+                                                    }}>delete</Button>
+                                            </div>
+                                        )
                                         )
                                     }
                                 </Stack>
                             </Col>
                         </Row>}
-                   
+
                 </Container>
-       </Container>
-       </>
+            </Container>
+        </>
     )
 }

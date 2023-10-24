@@ -43,14 +43,13 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        addTask: async (parent, { title,description, status }, context)=>{
+        addTask: async (parent, { title,description }, context)=>{
             if (!context.user) {
                 throw AuthenticationError;
             }
             const newTask = await Task.create({
                 title,
                 description,
-                status,
                 user: context.user._id
             });
 

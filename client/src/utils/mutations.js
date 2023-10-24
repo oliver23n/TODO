@@ -23,3 +23,29 @@ export const ADD_PROFILE = gql`
     }
   }
 `;
+
+export const ADD_TASK = gql`
+  mutation addTask($title: String!, $description: String){
+    addTask(title: $title, description: $description){
+      title
+      description
+    }
+  }
+`;
+
+export const UPDATE_TASK = gql`
+  mutation updateTask($_id: ID!, $status: String){
+    updateTask(_id: $_id, status: $status){
+      title
+      description
+    }
+  }
+`;
+
+export const DELETE_TASK = gql`
+  mutation removeTask($Id: ID!){
+    removeTask(_id: $Id){
+      title
+    }
+  }
+`;
