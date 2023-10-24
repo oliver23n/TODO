@@ -3,7 +3,8 @@
     import Form from 'react-bootstrap/Form';
     import Stack from 'react-bootstrap/Stack';
     import Row from 'react-bootstrap/Row';
-    import Col from 'react-bootstrap/Col'
+    import Col from 'react-bootstrap/Col';
+
 
     import { useState } from 'react';
     import { useQuery, useMutation } from '@apollo/client';
@@ -11,7 +12,7 @@
     import { ADD_TASK, UPDATE_TASK, DELETE_TASK } from '../utils/mutations';
 
     export default function Todo() {
-
+        
         const [formState, setFormState]= useState({
             title:'',
             description:''
@@ -115,7 +116,6 @@ const handleComplete = async(Id) =>{
                             name="description"
                             value={formState.description}
                             onChange={handleChange} />
-
                         <Button variant="primary"
                         onClick={handleSubmit}>Save</Button>
                     </Stack>
