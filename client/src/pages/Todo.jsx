@@ -112,7 +112,7 @@ export default function Todo() {
                 <h4 className='mt-3'>Add New Task:</h4>
                 <div>
 
-                    <Form.Control className="p-2 m-2" placeholder="Enter new task"
+                    <Form.Control className="p-2 m-2" placeholder="New task title"
                         name="title"
                         value={formState.title}
                         onChange={handleChange} />
@@ -122,7 +122,7 @@ export default function Todo() {
                         value={formState.description}
                         onChange={handleChange} />
                 </div>
-                <div class="d-flex justify-content-end">
+                <div className="d-flex justify-content-end">
                     <Button variant="primary" className='px-5 py-2'
                         onClick={handleSubmit}>Save</Button>
                 </div>
