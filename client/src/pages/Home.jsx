@@ -7,9 +7,14 @@ import {BsCheck2Circle} from 'react-icons/Bs'
 export default function Home() {
 
     return (
-        <Container >
+        <Container className='d-flex flex-column justify-content-center '>
             <div className='d-flex justify-content-center mt-5 p-2'>
-                <h1>TODO! <Badge bg="success"><BsCheck2Circle/></Badge></h1>
+                <h1>TODO <Badge bg="success"><BsCheck2Circle/></Badge></h1>
+            </div>
+            <div className='d-flex justify-content-center p-3 bg-body-tertiary border col-6'>
+            <p className=''>
+                Effortlessly manage your tasks and to-dos with our intuitive TODO app. Stay organized, set priorities, and track your progress with ease.
+            </p>
             </div>
             {Auth.loggedIn() ? 
             (

@@ -1,7 +1,8 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
 import Auth from '../utils/auth';
+import Container from 'react-bootstrap/Container';
+
 import { useMutation } from '@apollo/client';
 import { ADD_PROFILE } from '../utils/mutations';
 import { useState } from 'react';
@@ -44,38 +45,42 @@ export default function SignUp() {
     };
 
     return (
-        <>
+        <>  
+            <Container className='mt-5 w-50'>
+
             <Form onSubmit={handleFormSubmit}>
 
                 <Form.Group className="mb-3" controlId="formBasicUsername">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" placeholder="Please enter Username"
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control type="text" placeholder="Enter Username"
                     name="username"
                     onChange={handleChange}
                     value={formState.username} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email"
+                    <Form.Label>Email address:</Form.Label>
+                    <Form.Control type="email" placeholder="Enter e-mail"
                     name="email"
                     onChange={handleChange}
                     value={formState.email} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Password:</Form.Label>
                     <Form.Control type="password" 
                     name="password"
-                    placeholder="Password"
+                    placeholder="Enter Password"
                     onChange={handleChange}
                     value={formState.password} />
                 </Form.Group>
-
-                <Button variant="primary" type="submit">
+                <div className='d-flex justify-content-center m-1'>
+                 <Button variant="dark" type="submit">
                     Sign Up!
                 </Button>
+                </div>
             </Form>
+    </Container>
         </>
     )
 }

@@ -123,7 +123,7 @@ export default function Todo() {
                         onChange={handleChange} />
                 </div>
                 <div className="d-flex justify-content-end">
-                    <Button variant="primary" className='px-5 py-2'
+                    <Button variant="dark" className='px-5 py-2'
                         onClick={handleSubmit}>Save</Button>
                 </div>
 

@@ -1,7 +1,6 @@
 *{
 font-family:Georgia, 'Times New Roman', Times, serif
 }
-a:hover{
-    transition: all 500ms ease;
-    text-decoration:underline;
+.desc{
+    
 }

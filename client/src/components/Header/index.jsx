@@ -1,6 +1,7 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container';
+import { BsCheck2Circle } from 'react-icons/Bs'
 import Auth from '../../utils/auth';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../../utils/queries';
@@ -18,7 +19,7 @@ const Header = () => {
     return (
         <Navbar className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href='/'>Todos</Navbar.Brand>
+                <Navbar.Brand href='/'>TODO <BsCheck2Circle/></Navbar.Brand>
                 {Auth.loggedIn()? (
                     <>
                     <Navbar.Text>
