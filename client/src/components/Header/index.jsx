@@ -9,7 +9,6 @@ import { QUERY_ME } from '../../utils/queries';
 const Header = () => {
 
     const { loading, data, error } = useQuery(QUERY_ME);
-    // console.log(data.me.username);
     const logout = (event) => {
         event.preventDefault();
         Auth.logout();
@@ -19,7 +18,7 @@ const Header = () => {
     return (
         <Navbar className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href='/'>TODO <BsCheck2Circle /></Navbar.Brand>
+                <Navbar.Brand href='/'>TO-DO <BsCheck2Circle /></Navbar.Brand>
                 {Auth.loggedIn() ? (
                     <>
                         <Navbar.Text>

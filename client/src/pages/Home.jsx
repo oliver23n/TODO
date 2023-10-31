@@ -9,7 +9,7 @@ export default function Home() {
     return (
         <Container className='d-flex flex-column justify-content-center'>
             <div className='d-flex justify-content-center mt-5 p-2'>
-                <h1>TODO <Badge bg="success"><BsCheck2Circle /></Badge></h1>
+                <h1>TO-DO <Badge bg="success"><BsCheck2Circle /></Badge></h1>
             </div>
             <div className='d-flex justify-content-center '>
                 <div className='p-3 bg-body-tertiary border col-6'>
