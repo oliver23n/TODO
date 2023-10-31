@@ -8,7 +8,7 @@ import { QUERY_ME } from '../../utils/queries';
 
 const Header = () => {
 
-    const { loading, data, error} =useQuery(QUERY_ME);
+    const { loading, data, error } = useQuery(QUERY_ME);
     // console.log(data.me.username);
     const logout = (event) => {
         event.preventDefault();
@@ -19,17 +19,17 @@ const Header = () => {
     return (
         <Navbar className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href='/'>TODO <BsCheck2Circle/></Navbar.Brand>
-                {Auth.loggedIn()? (
+                <Navbar.Brand href='/'>TODO <BsCheck2Circle /></Navbar.Brand>
+                {Auth.loggedIn() ? (
                     <>
-                    <Navbar.Text>
-                            Signed in as: {loading ? <p></p> : <i>{data.me.username}</i> }
-                    </Navbar.Text>
-                    <Nav.Link onClick={logout}>Logout</Nav.Link>
+                        <Navbar.Text>
+                            Signed in as: {loading ? <p></p> : <i>{data.me.username}</i>}
+                        </Navbar.Text>
+                        <Nav.Link onClick={logout}>Logout</Nav.Link>
                     </>
-                    ): (
-                        <Nav.Link href='/login'>Login</Nav.Link>
-                        )}
+                ) : (
+                    <Nav.Link href='/login'>Login</Nav.Link>
+                )}
             </Container>
         </Navbar>
     )
