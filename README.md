@@ -11,7 +11,7 @@
 - [License](#license)
 
 ## Description
--  TO-DO is a user-friendly task and to-do list management app that helps you stay organized and boost productivity. Easily create, prioritize, and track your tasks, ensuring you stay on top of your daily responsibilities. Simplify your life and accomplish more with TaskMaster.
+-  TO-DO is a user-friendly task and to-do list management app that helps you stay organized and boost productivity. Easily create, prioritize, and track your tasks, ensuring you stay on top of your daily responsibilities. Simplify your life and accomplish more!
 
 ![homepage](./assets/images/homepage.png) 
 ## Installation
